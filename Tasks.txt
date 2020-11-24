@@ -1,0 +1,13 @@
+Omar Samy
+- General Environemt level design.
+- Desk design + transparent texture.
+- Main player and its animation
+- Camera System.
+- General Lighting.
+- NPC 3 and its animation
+- Choice 1
+- Logo design/banner
+- Choice 4
+
+Mixed Tasks:
+- Menus, SFX, credits
