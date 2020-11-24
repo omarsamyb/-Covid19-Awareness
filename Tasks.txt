@@ -20,6 +20,15 @@ Mohamed Aboelazaiem Salama
 - Choice 3
 - Final Task
 
+Ahmed Mohamed Youssef
+- NPC 1 model and its animation
+- NPC 2 model and its animation
+- Office Task 1 animation (laptop)
+- Handshake animation
+- Wash/Sanitize hands animation
+- Hand sanitizer model
+- Choice 2 
+
 
 Mixed Tasks:
 - Menus, SFX, credits
