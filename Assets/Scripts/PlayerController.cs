@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private RaycastHit hit;
     private float raycastRange;
-    private int layerMask;
+    private int worldMask;
     private PlayerMotor motor;
     private bool isAgent;
 
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         turnSmoothTime = 0.1f;
         animator = GetComponent<Animator>();
         raycastRange = 8f;
-        layerMask = 1 << 8;
+        worldMask = 1 << 8;
         motor = GetComponent<PlayerMotor>();
         isAgent = false;
         motor.agent.enabled = false;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         // Interactions
         //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, layerMask))
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, worldMask))
         {
             if (Input.GetKeyDown(KeyCode.E) && !isAgent)
             {
