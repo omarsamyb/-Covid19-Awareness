@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private int worldMask;
     private PlayerMotor motor;
     private bool isAgent;
+    Interactable interactable;
 
     void Start()
     {
@@ -47,16 +48,16 @@ public class PlayerController : MonoBehaviour
         run = Input.GetAxisRaw("Run");
 
         // Interactions
-        //Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, worldMask))
         {
             if (Input.GetKeyDown(KeyCode.E) && !isAgent)
             {
-                isAgent = true;
-                motor.agent.enabled = true;
-                animator.SetBool("isWalking", true);
-                motor.MoveToPoint(hit.point);
+                interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    Focus();
+                }
             }
         }
         Debug.DrawRay(cam.transform.position, cam.transform.forward * raycastRange, Color.yellow);
@@ -71,10 +72,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!motor.agent.hasPath || motor.agent.velocity.sqrMagnitude == 0f)
                 {
-                    motor.agent.ResetPath();
-                    motor.agent.enabled = false;
-                    isAgent = false;
-                    animator.SetBool("isWalking", false);
+                    Interact();
                 }
             }
         }
@@ -107,5 +105,22 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isRunning", false);
             }
         }
+    }
+
+    void Focus()
+    {
+        isAgent = true;
+        motor.agent.enabled = true;
+        animator.SetBool("isWalking", true);
+        motor.MoveToTarget(interactable.interactionTransform);
+    }
+
+    void Interact()
+    {
+        isAgent = false;
+        motor.agent.ResetPath();
+        motor.agent.enabled = false;
+        animator.SetBool("isWalking", false);
+        interactable.OnFocused(transform);
     }
 }
