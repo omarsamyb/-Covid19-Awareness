@@ -4,13 +4,13 @@ public class Interactable : MonoBehaviour
 {
     public float radius;
     private bool isFocused;
-    private Transform player;
+    protected Transform player;
     private bool hasInteracted;
     public Transform interactionTransform;
 
     private void Start()
     {
-        radius = 3f;
+        radius = 1f;
         isFocused = false;
         hasInteracted = false;
     }
@@ -30,11 +30,6 @@ public class Interactable : MonoBehaviour
         player = playerTransform;
         hasInteracted = false;
     }
-    public void OnDefocused()
-    {
-        isFocused = false;
-        player = null;
-    }
 
     public virtual void Interact()
     {
@@ -44,6 +39,8 @@ public class Interactable : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (interactionTransform == null)
+            interactionTransform = transform;
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }

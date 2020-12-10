@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
+    [HideInInspector]
+    public static PlayerController instance;
     private Camera cam;
     private float horizontal;
     private float vertical;
@@ -21,11 +23,14 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private RaycastHit hit;
     private float raycastRange;
-    private int worldMask;
+    private int interactableMask;
     private PlayerMotor motor;
-    private bool isAgent;
     Interactable interactable;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         cam = Camera.main;
@@ -34,39 +39,45 @@ public class PlayerController : MonoBehaviour
         turnSmoothTime = 0.1f;
         animator = GetComponent<Animator>();
         raycastRange = 8f;
-        worldMask = 1 << 8;
+        interactableMask = 1 << 9;
         motor = GetComponent<PlayerMotor>();
-        isAgent = false;
         motor.agent.enabled = false;
     }
 
     void Update()
     {
-        // Inputs
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-        run = Input.GetAxisRaw("Run");
-
-        // Interactions
-
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, worldMask))
+        if (GameManager.instance.controlsEnabled)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !isAgent)
+            // Inputs
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+            run = Input.GetAxisRaw("Run");
+
+            // Interactions
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, interactableMask))
             {
-                interactable = hit.collider.GetComponent<Interactable>();
-                if (interactable != null)
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Focus();
+                    interactable = hit.collider.GetComponent<Interactable>();
+                    if (interactable != null)
+                    {
+                        Focus();
+                    }
                 }
             }
         }
+        else
+        {
+            horizontal = 0;
+            vertical = 0;
+            run = 0;
+        }
         Debug.DrawRay(cam.transform.position, cam.transform.forward * raycastRange, Color.yellow);
-        
     }
 
     private void FixedUpdate()
     {
-        if (!motor.agent.pathPending && isAgent)
+        if (!motor.agent.pathPending && motor.agent.enabled)
         {
             if (motor.agent.remainingDistance <= motor.agent.stoppingDistance)
             {
@@ -76,7 +87,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if (!isAgent)
+        if (GameManager.instance.controlsEnabled)
         {
             // Normalized so that we don't move faster when we move in 2 directions
             targetDirection = new Vector3(horizontal, 0f, vertical).normalized;
@@ -109,15 +120,16 @@ public class PlayerController : MonoBehaviour
 
     void Focus()
     {
-        isAgent = true;
+        GameManager.instance.controlsEnabled = false;
         motor.agent.enabled = true;
+        animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
-        motor.MoveToTarget(interactable.interactionTransform);
+        motor.MoveToTarget(interactable);
     }
 
     void Interact()
     {
-        isAgent = false;
+        GameManager.instance.controlsEnabled = true;
         motor.agent.ResetPath();
         motor.agent.enabled = false;
         animator.SetBool("isWalking", false);

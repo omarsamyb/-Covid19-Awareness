@@ -4,7 +4,14 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMotor : MonoBehaviour
 {
+    [HideInInspector]
+    public static PlayerMotor instance;
     public NavMeshAgent agent;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -15,10 +22,11 @@ public class PlayerMotor : MonoBehaviour
     {
         agent.SetDestination(point);
     }
-    public void MoveToTarget(Transform target)
+    public void MoveToTarget(Interactable target)
     {
         //agent.updateRotation = false;
-        agent.SetDestination(target.position);
+        agent.stoppingDistance = target.radius;
+        agent.SetDestination(target.interactionTransform.position);
         //FaceTarget(target);
     }
     void FaceTarget(Transform target)
