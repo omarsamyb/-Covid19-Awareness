@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
     private float angle;
     private Animator animator;
     private RaycastHit hit;
-    private float raycastRange;
-    private int interactableMask;
     private PlayerMotor motor;
     Interactable interactable;
 
@@ -37,9 +35,7 @@ public class PlayerController : MonoBehaviour
         walkSpeed = 2f;
         runSpeed = 4f;
         turnSmoothTime = 0.1f;
-        animator = GetComponent<Animator>();
-        raycastRange = 8f;
-        interactableMask = 1 << 9;
+        animator = GetComponent<Animator>(); 
         motor = GetComponent<PlayerMotor>();
         motor.agent.enabled = false;
     }
@@ -54,18 +50,12 @@ public class PlayerController : MonoBehaviour
             run = Input.GetAxisRaw("Run");
 
             // Interactions
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, interactableMask))
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GameManager.instance.raycastRange, GameManager.instance.interactableMask))
             {
-                Interactable currentInteractable = hit.collider.GetComponent<Interactable>();
-                if (currentInteractable != interactable)
-                {
-                    if (interactable != null) interactable.OnHoverExit();
-                    interactable = currentInteractable;
-                    interactable.OnHoverEnter();
-                }
+                interactable = hit.collider.GetComponent<Interactable>();
                 if (Input.GetKeyDown(KeyCode.E) && interactable != null)
                 {
-                    Focus();
+                    motor.MoveToTarget(interactable);
                 }
             }
         }
@@ -75,22 +65,11 @@ public class PlayerController : MonoBehaviour
             vertical = 0;
             run = 0;
         }
-        Debug.DrawRay(cam.transform.position, cam.transform.forward * raycastRange, Color.yellow);
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * GameManager.instance.raycastRange, Color.yellow);
     }
 
     private void FixedUpdate()
     {
-        if (!motor.agent.pathPending && motor.agent.enabled)
-        {
-            if (motor.agent.remainingDistance <= motor.agent.stoppingDistance)
-            {
-                if (!motor.agent.hasPath || motor.agent.velocity.sqrMagnitude == 0f)
-                {
-                    StartCoroutine(motor.FaceTarget(interactable.interactionTransform));
-                    Interact();
-                }
-            }
-        }
         if (GameManager.instance.controlsEnabled)
         {
             // Normalized so that we don't move faster when we move in 2 directions
@@ -120,23 +99,5 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isRunning", false);
             }
         }
-    }
-
-    void Focus()
-    {
-        GameManager.instance.controlsEnabled = false;
-        motor.agent.enabled = true;
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isWalking", true);
-        motor.MoveToTarget(interactable);
-    }
-
-    void Interact()
-    {
-        GameManager.instance.controlsEnabled = true;
-        motor.agent.ResetPath();
-        motor.agent.enabled = false;
-        animator.SetBool("isWalking", false);
-        interactable.OnFocused(transform);
     }
 }

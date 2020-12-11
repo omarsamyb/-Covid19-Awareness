@@ -13,7 +13,6 @@ public class DoorInteraction : Interactable
     private Vector3 rightDoorToRotation;
     public Transform enterPoint;
     public Transform exitPoint;
-    private Animator animator;
     private float speed;
     public override void Interact()
     {
@@ -38,7 +37,6 @@ public class DoorInteraction : Interactable
             leftDoorToRotation.y -= 100f;
             rightDoorToRotation.y += 100f;
         }
-        animator = player.GetComponent<Animator>();
         StartCoroutine(CloseDoor());
     }
     IEnumerator OpenDoor()
@@ -59,35 +57,19 @@ public class DoorInteraction : Interactable
         yield return OpenDoor();
         if (GameManager.instance.isPlayerInsideOffice)
         {
-            PlayerMotor.instance.agent.enabled = true;
-            animator.SetBool("isWalking", true);
             PlayerMotor.instance.MoveToPoint(exitPoint.position);
             GameManager.instance.isPlayerInsideOffice = false;
         }
         else
         {
-            PlayerMotor.instance.agent.enabled = true;
-            animator.SetBool("isWalking", true);
             PlayerMotor.instance.MoveToPoint(enterPoint.position);
             GameManager.instance.isPlayerInsideOffice = true;
         }
-        while (true)
+        while (!PlayerMotor.instance.arrived)
         {
-            if (!PlayerMotor.instance.agent.pathPending)
-            {
-                if (PlayerMotor.instance.agent.remainingDistance <= PlayerMotor.instance.agent.stoppingDistance)
-                {
-                    if (!PlayerMotor.instance.agent.hasPath || PlayerMotor.instance.agent.velocity.sqrMagnitude == 0f)
-                    {
-                        break;
-                    }
-                }
-            }
             yield return null;
         }
-        PlayerMotor.instance.agent.ResetPath();
-        PlayerMotor.instance.agent.enabled = false;
-        animator.SetBool("isWalking", false);
+        GameManager.instance.controlsEnabled = false;
         leftDoorToRotation = leftDoorCurrentRotation;
         rightDoorToRotation = rightDoorCurrentRotation;
         if (GameManager.instance.isPlayerInsideOffice)
