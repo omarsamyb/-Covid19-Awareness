@@ -44,14 +44,4 @@ public class Interactable : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
-
-    public void OnHoverEnter()
-    {
-
-    }
-    public void OnHoverExit()
-    {
-
-    }
-
 }
