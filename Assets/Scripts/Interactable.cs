@@ -45,4 +45,13 @@ public class Interactable : MonoBehaviour
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
 
+    public void OnHoverEnter()
+    {
+
+    }
+    public void OnHoverExit()
+    {
+
+    }
+
 }

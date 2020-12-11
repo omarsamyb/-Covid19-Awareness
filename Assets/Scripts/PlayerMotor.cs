@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
@@ -27,13 +28,20 @@ public class PlayerMotor : MonoBehaviour
         //agent.updateRotation = false;
         agent.stoppingDistance = target.radius;
         agent.SetDestination(target.interactionTransform.position);
-        //FaceTarget(target);
+        //StartCoroutine(FaceTarget(target.interactionTransform));
     }
-    void FaceTarget(Transform target)
+    public IEnumerator FaceTarget(Transform target)
     {
-        // Need to edit it to make the player face the objects face.
-        Vector3 direction = (target.position).normalized;
+        Quaternion initialRotation = transform.rotation;
+        Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 5f);
+        for (float t = 0f; t < 1f; t += 4f * Time.deltaTime)
+        {
+            transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, t);
+            yield return null;
+        }
+        direction = (target.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+        agent.updateRotation = true;
     }
 }

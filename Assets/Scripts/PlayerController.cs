@@ -56,13 +56,16 @@ public class PlayerController : MonoBehaviour
             // Interactions
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, raycastRange, interactableMask))
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                Interactable currentInteractable = hit.collider.GetComponent<Interactable>();
+                if (currentInteractable != interactable)
                 {
-                    interactable = hit.collider.GetComponent<Interactable>();
-                    if (interactable != null)
-                    {
-                        Focus();
-                    }
+                    if (interactable != null) interactable.OnHoverExit();
+                    interactable = currentInteractable;
+                    interactable.OnHoverEnter();
+                }
+                if (Input.GetKeyDown(KeyCode.E) && interactable != null)
+                {
+                    Focus();
                 }
             }
         }
@@ -83,6 +86,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (!motor.agent.hasPath || motor.agent.velocity.sqrMagnitude == 0f)
                 {
+                    StartCoroutine(motor.FaceTarget(interactable.interactionTransform));
                     Interact();
                 }
             }
