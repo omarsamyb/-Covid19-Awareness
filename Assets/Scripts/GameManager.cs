@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float raycastRange;
     public int interactableMask;
     public int multiChoiceOutcome0;
+    public Transform crosshairHover;
 
     private void Awake()
     {

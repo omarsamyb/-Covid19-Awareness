@@ -58,12 +58,16 @@ public class OpeningSceneEvent : MonoBehaviour
                         currentHovered.transform.GetComponentInChildren<TextMeshPro>().color = hoverColor;
                         currentHovered.transform.GetComponentInChildren<TextMeshPro>().fontSharedMaterial = hoverMaterial;
                         hovered = currentHovered;
+                        GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     }
+                    else
+                        GameManager.instance.crosshairHover.gameObject.SetActive(false);
                 }
                 if (Input.GetKeyDown(KeyCode.E) && hovered != null)
                 {
                     selected = hovered;
                     isSelecting = false;
+                    GameManager.instance.crosshairHover.gameObject.SetActive(false);
                 }
             }
             else
@@ -73,6 +77,9 @@ public class OpeningSceneEvent : MonoBehaviour
                     hovered.transform.GetComponentInChildren<TextMeshPro>().color = Color.white;
                     hovered.transform.GetComponentInChildren<TextMeshPro>().fontSharedMaterial = defaultMaterial;
                 }
+                currentHovered = null;
+                hovered = null;
+                GameManager.instance.crosshairHover.gameObject.SetActive(false);
             }
         }
     }
