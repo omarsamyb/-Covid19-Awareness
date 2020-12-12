@@ -15,7 +15,7 @@ public class Printing : Interactable
        // player.transform.rotation
 
         playerAnimator.SetBool("isPrinting", true);
-        StartCoroutine(Wait(1.0f));
+        StartCoroutine(Wait(21.0f));
     }
     private IEnumerator Wait(float waitTime)
     {

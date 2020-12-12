@@ -15,7 +15,7 @@ public class HandScanner : Interactable
        // player.transform.rotation
 
         playerAnimator.SetBool("isScanning", true);
-        StartCoroutine(Wait(1.0f));
+        StartCoroutine(Wait(3.7f));
     }
     private IEnumerator Wait(float waitTime)
     {
