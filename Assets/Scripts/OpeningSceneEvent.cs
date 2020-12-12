@@ -7,10 +7,9 @@ public class OpeningSceneEvent : MonoBehaviour
 {
     public Transform npc;
     public Transform player;
+    private Vector3 npcInitialPosition;
     private PlayerMotor playerMotor;
     private NPCMotor npcMotor;
-    private Animator playerAnimator;
-    private Animator npcAnimator;
     public Transform playerInteractionPoint;
     public Transform npcInteractionPoint;
     public Interactable handshakeOption;
@@ -32,11 +31,10 @@ public class OpeningSceneEvent : MonoBehaviour
     {
         playerMotor = player.GetComponent<PlayerMotor>();
         npcMotor = npc.GetComponent<NPCMotor>();
-        playerAnimator = player.GetComponent<Animator>();
-        npcAnimator = npc.GetComponent<Animator>();
         isSelecting = false;
         cam = Camera.main;
         hoverColor = new Color(255f, 140f, 0f);
+        npcInitialPosition = npc.position;
     }
 
     // Update is called once per frame
@@ -66,6 +64,14 @@ public class OpeningSceneEvent : MonoBehaviour
                 {
                     selected = hovered;
                     isSelecting = false;
+                }
+            }
+            else
+            {
+                if (hovered != null)
+                {
+                    hovered.transform.GetComponentInChildren<TextMeshPro>().color = Color.white;
+                    hovered.transform.GetComponentInChildren<TextMeshPro>().fontSharedMaterial = defaultMaterial;
                 }
             }
         }
@@ -102,6 +108,7 @@ public class OpeningSceneEvent : MonoBehaviour
             }
             yield return null;
         }
+        GameManager.instance.controlsEnabled = false;
         Vector3 npcPlayerDirection = (player.position - npc.position).normalized;
         Vector3 playerNpcDirection = (npc.position - player.position).normalized;
         Quaternion npcLookRotation = Quaternion.LookRotation(new Vector3(npcPlayerDirection.x, 0f, npcPlayerDirection.z));
@@ -123,6 +130,20 @@ public class OpeningSceneEvent : MonoBehaviour
         {
             selected.OnFocused(player);
         }
-        
+        yield return WaitForInteraction(selected);
+
+        npcMotor.MoveToPoint(npcInitialPosition);
+        handshakeOption.gameObject.SetActive(false);
+        waveOption.gameObject.SetActive(false);
+        hugOption.gameObject.SetActive(false);
+        GameManager.instance.controlsEnabled = true;
+    }
+
+    IEnumerator WaitForInteraction(Interactable interaction)
+    {
+        while (!interaction.finished)
+        {
+            yield return null;
+        }
     }
 }
