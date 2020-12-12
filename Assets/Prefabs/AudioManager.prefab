@@ -44,5 +44,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
-  sounds: []
+  sounds:
+  - name: TimeFreezeSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: bd3defa6e64d5a1489d3d940ac092fa0, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: TimeUnfreezeSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 72c7104431a1df048851f74f7437d2ce, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: HeartPoundingSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2a86b09f941f3b24e94073fba5040029, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: ChoiceSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c526fc79f24df414ca29fbc8c8a72761, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: HoverSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2c5a1345829c56b43af8e7264497a43c, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
   isMuted: 0

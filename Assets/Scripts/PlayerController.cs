@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private RaycastHit hit;
     private PlayerMotor motor;
     Interactable interactable;
+    Interactable prev;
 
     private void Awake()
     {
@@ -53,20 +54,28 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GameManager.instance.raycastRange, GameManager.instance.interactableMask))
             {
                 interactable = hit.collider.GetComponent<Interactable>();
-                if(interactable != null)
+                if (interactable != null)
                 {
+                    if (prev != interactable)
+                    {
+                        AudioManager.instance.Play("HoverSFX");
+                        prev = interactable;
+                    }
                     GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        if(interactable.CompareTag("DoubleSidedInteractable"))
+                        if (interactable.CompareTag("DoubleSidedInteractable"))
                             motor.MoveToDoubleSidedTarget(interactable);
                         else
                             motor.MoveToTarget(interactable);
                     }
-                }        
+                }
             }
             else
+            {
                 GameManager.instance.crosshairHover.gameObject.SetActive(false);
+                prev = null;
+            }
         }
         else
         {

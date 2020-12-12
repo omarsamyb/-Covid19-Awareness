@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -25,6 +24,15 @@ public class OpeningSceneEvent : MonoBehaviour
     private float rayCastRange;
     public Material hoverMaterial;
     public Material defaultMaterial;
+    public GameObject lights;
+    public Transform playerLightTransform;
+    public Transform playerEffectLightTransform;
+    public Transform npcLightTransform;
+    private float flickerSpeed;
+    private float flickerSpeedModifier;
+    private float timer;
+    private float time;
+    private bool flickerDone;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +43,12 @@ public class OpeningSceneEvent : MonoBehaviour
         cam = Camera.main;
         hoverColor = new Color(255f, 140f, 0f);
         npcInitialPosition = npc.position;
-    }
+        flickerSpeed = 1f;
+        flickerSpeedModifier = 2.7f;
+        timer = 1f;
+        time = 1f;
+        flickerDone = true;
+}
 
     // Update is called once per frame
     void Update()
@@ -59,6 +72,7 @@ public class OpeningSceneEvent : MonoBehaviour
                         currentHovered.transform.GetComponentInChildren<TextMeshPro>().fontSharedMaterial = hoverMaterial;
                         hovered = currentHovered;
                         GameManager.instance.crosshairHover.gameObject.SetActive(true);
+                        AudioManager.instance.Play("ChoiceSFX");
                     }
                     else
                         GameManager.instance.crosshairHover.gameObject.SetActive(false);
@@ -68,6 +82,12 @@ public class OpeningSceneEvent : MonoBehaviour
                     selected = hovered;
                     isSelecting = false;
                     GameManager.instance.crosshairHover.gameObject.SetActive(false);
+                    AudioManager.instance.Stop("HeartPoundingSFX");
+                    AudioManager.instance.Play("TimeUnfreezeSFX");
+                    lights.SetActive(true);
+                    playerLightTransform.gameObject.SetActive(false);
+                    playerEffectLightTransform.gameObject.SetActive(false);
+                    npcLightTransform.gameObject.SetActive(false);
                 }
             }
             else
@@ -98,6 +118,11 @@ public class OpeningSceneEvent : MonoBehaviour
             waveOption.transform.GetChild(0).gameObject.SetActive(true);
             hugOption.transform.GetChild(0).gameObject.SetActive(true);
             isSelecting = true;
+            lights.SetActive(false);
+            playerLightTransform.gameObject.SetActive(true);
+            npcLightTransform.gameObject.SetActive(true);
+            AudioManager.instance.Play("TimeFreezeSFX");
+            AudioManager.instance.Play("HeartPoundingSFX");
         }
     }
 
@@ -113,6 +138,17 @@ public class OpeningSceneEvent : MonoBehaviour
                 waveOption.transform.GetChild(0).gameObject.SetActive(false);
                 hugOption.transform.GetChild(0).gameObject.SetActive(false);
             }
+            else if(isSelecting && flickerDone)
+            {
+                timer -= flickerSpeed * Time.deltaTime;
+                if (flickerSpeed < 7f)
+                    flickerSpeed += flickerSpeedModifier * Time.deltaTime;
+                if(timer < 0f)
+                {
+                    timer = time;
+                    StartCoroutine(Flicker());
+                }
+            }
             yield return null;
         }
         GameManager.instance.controlsEnabled = false;
@@ -122,16 +158,21 @@ public class OpeningSceneEvent : MonoBehaviour
         Quaternion playerLookRotation = Quaternion.LookRotation(new Vector3(playerNpcDirection.x, 0f, playerNpcDirection.z));
         player.rotation = playerLookRotation;
         npc.rotation = npcLookRotation;
+        lights.SetActive(true);
+        playerLightTransform.gameObject.SetActive(false);
+        playerEffectLightTransform.gameObject.SetActive(false);
+        npcLightTransform.gameObject.SetActive(false);
         if (isSelecting)
         {
             Time.timeScale = 1f;
-            // need to make this random
             selected = handshakeOption;
             selected.OnFocused(player);
+            isSelecting = false;
             handshakeOption.transform.GetChild(0).gameObject.SetActive(false);
             waveOption.transform.GetChild(0).gameObject.SetActive(false);
             hugOption.transform.GetChild(0).gameObject.SetActive(false);
-            isSelecting = false;
+            AudioManager.instance.Stop("HeartPoundingSFX");
+            AudioManager.instance.Play("TimeUnfreezeSFX");
         }
         else
         {
@@ -152,5 +193,19 @@ public class OpeningSceneEvent : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    IEnumerator Flicker()
+    {
+        flickerDone = false;
+        playerEffectLightTransform.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.01f);
+        playerEffectLightTransform.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.01f);
+        playerEffectLightTransform.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.01f);
+        playerEffectLightTransform.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.01f);
+        flickerDone = true;
     }
 }
