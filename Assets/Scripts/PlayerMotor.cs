@@ -30,7 +30,7 @@ public class PlayerMotor : MonoBehaviour
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
         agent.SetDestination(point);
-        StartCoroutine(MoveToPointTracker(point));
+        StartCoroutine(MoveToPointTracker());
         arrived = false;
     }
     public void MoveToTarget(Interactable target)
@@ -39,27 +39,46 @@ public class PlayerMotor : MonoBehaviour
         agent.enabled = true;
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
-        //agent.stoppingDistance = target.radius;
         agent.SetDestination(target.interactionTransform.position);
         StartCoroutine(MoveToTargetTracker(target));
         arrived = false;
     }
-    public IEnumerator FaceTarget(Vector3 target)
+    public void MoveToDoubleSidedTarget(Interactable target)
     {
+        Debug.Log("KKKKKKKKKKKKKKKKKKKK");
+        GameManager.instance.controlsEnabled = false;
+        agent.enabled = true;
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isWalking", true);
+        agent.stoppingDistance = target.radius;
+        agent.SetDestination(target.interactionTransform.position);
+        StartCoroutine(MoveToTargetTracker(target));
+        arrived = false;
+    }
+    public IEnumerator FaceTarget(Interactable interactable)
+    {
+        Transform target = interactable.interactionTransform;
         Quaternion initialRotation = transform.rotation;
-        Vector3 direction = (target - transform.position).normalized;
+        Vector3 direction;
+        if (interactable.CompareTag("DoubleSidedInteractable"))
+            direction = (target.parent.transform.position - transform.position).normalized;
+        else
+            direction = (target.parent.transform.position - target.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         for (float t = 0f; t < 1f; t += 4f * Time.deltaTime)
         {
             transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, t);
             yield return null;
         }
-        direction = (target - transform.position).normalized;
+        if (interactable.CompareTag("DoubleSidedInteractable"))
+            direction = (target.parent.transform.position - transform.position).normalized;
+        else
+            direction = (target.parent.transform.position - target.position).normalized;
         transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         agent.updateRotation = true;
     }
 
-    public IEnumerator MoveToPointTracker(Vector3 point)
+    public IEnumerator MoveToPointTracker()
     {
         while (true)
         {
@@ -69,7 +88,6 @@ public class PlayerMotor : MonoBehaviour
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
-                        //yield return FaceTarget(point);
                         break;
                     }
                 }
@@ -93,7 +111,7 @@ public class PlayerMotor : MonoBehaviour
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
-                        yield return FaceTarget(interactable.interactionTransform.position);
+                        yield return FaceTarget(interactable);
                         break;
                     }
                 }

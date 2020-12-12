@@ -58,10 +58,12 @@ public class PlayerController : MonoBehaviour
                     GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        motor.MoveToTarget(interactable);
+                        if(interactable.CompareTag("DoubleSidedInteractable"))
+                            motor.MoveToDoubleSidedTarget(interactable);
+                        else
+                            motor.MoveToTarget(interactable);
                     }
-                }
-                
+                }        
             }
             else
                 GameManager.instance.crosshairHover.gameObject.SetActive(false);
