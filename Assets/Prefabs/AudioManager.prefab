@@ -95,4 +95,14 @@ MonoBehaviour:
     pitchVariance: 0
     loop: 0
     isPlaying: 0
+  - name: GreetingsSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: cd0424350690acf42a47ee044260d4ab, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
   isMuted: 0
