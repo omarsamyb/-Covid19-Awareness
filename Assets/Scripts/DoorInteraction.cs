@@ -99,5 +99,6 @@ public class DoorInteraction : Interactable
         leftDoor.localEulerAngles = leftDoorInitialRotation;
         rightDoor.localEulerAngles = rightDoorInitialRotation;
         GameManager.instance.controlsEnabled = true;
+        finished = true;
     }
 }

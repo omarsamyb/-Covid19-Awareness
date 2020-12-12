@@ -7,12 +7,14 @@ public class Interactable : MonoBehaviour
     protected Transform player;
     private bool hasInteracted;
     public Transform interactionTransform;
+    public bool finished;
 
     private void Start()
     {
         radius = 1f;
         isFocused = false;
         hasInteracted = false;
+        finished = false;
     }
     private void Update()
     {
@@ -21,7 +23,7 @@ public class Interactable : MonoBehaviour
             Interact();
             hasInteracted = true;
         }
-        
+
     }
 
     public void OnFocused(Transform playerTransform)
@@ -29,6 +31,7 @@ public class Interactable : MonoBehaviour
         isFocused = true;
         player = playerTransform;
         hasInteracted = false;
+        finished = false;
     }
 
     public virtual void Interact()

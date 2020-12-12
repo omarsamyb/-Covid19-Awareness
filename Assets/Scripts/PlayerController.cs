@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         walkSpeed = 2f;
         runSpeed = 4f;
         turnSmoothTime = 0.1f;
-        animator = GetComponent<Animator>(); 
+        animator = GetComponent<Animator>();
         motor = GetComponent<PlayerMotor>();
         motor.agent.enabled = false;
     }
