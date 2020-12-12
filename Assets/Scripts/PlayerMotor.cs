@@ -39,7 +39,7 @@ public class PlayerMotor : MonoBehaviour
         agent.enabled = true;
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
-        agent.stoppingDistance = target.radius;
+        // agent.stoppingDistance = target.radius;
         agent.SetDestination(target.interactionTransform.position);
         StartCoroutine(MoveToTargetTracker(target));
         arrived = false;
