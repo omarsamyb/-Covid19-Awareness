@@ -45,7 +45,6 @@ public class PlayerMotor : MonoBehaviour
     }
     public void MoveToDoubleSidedTarget(Interactable target)
     {
-        Debug.Log("KKKKKKKKKKKKKKKKKKKK");
         GameManager.instance.controlsEnabled = false;
         agent.enabled = true;
         animator.SetBool("isRunning", false);
