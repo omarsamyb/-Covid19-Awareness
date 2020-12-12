@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
+    agentRadius: 0.25
+    agentHeight: 1.8
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.083333336
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -473,8 +473,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15349054}
-  m_LocalRotation: {x: 0.05750847, y: -0.7047643, z: 0.057508465, w: 0.70476437}
-  m_LocalPosition: {x: -55.000004, y: 0, z: 0}
+  m_LocalRotation: {x: 0.062033497, y: -0.70438045, z: 0.062033497, w: 0.7043805}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 296785917}
@@ -30632,7 +30632,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0760807, y: -0.703002, z: 0.076080695, w: 0.703002}
+  m_LocalRotation: {x: 0.076080695, y: -0.703002, z: 0.07608069, w: 0.703002}
   m_LocalPosition: {x: 62.743748, y: 2.0321865, z: 0.49999988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -58682,7 +58682,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896019558}
-  m_LocalRotation: {x: 0.087579146, y: -0.70166224, z: 0.087579146, w: 0.70166224}
+  m_LocalRotation: {x: 0.087579146, y: -0.7016622, z: 0.08757913, w: 0.7016623}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
