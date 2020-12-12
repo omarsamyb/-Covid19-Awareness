@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
 			s.source.outputAudioMixerGroup = mixerGroup;
+			s.isPlaying = s.source.isPlaying;
 		}
 	}
 
@@ -88,6 +89,7 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		s.source.Pause();
+		s.isPlaying = false;
 	}
 
 	public void UnPause(string sound)
@@ -99,6 +101,7 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 		s.source.UnPause();
+		s.isPlaying = true;
 	}
 
 	public bool isPlaying(string sound)
@@ -109,7 +112,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + name + " not found!");
 			return false;
 		}
-		return s.isPlaying;
+		return s.source.isPlaying;
 	}
 
 	public void ToggleMute()

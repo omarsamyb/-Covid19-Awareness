@@ -44,7 +44,7 @@ public class OpeningSceneEvent : MonoBehaviour
         hoverColor = new Color(255f, 140f, 0f);
         npcInitialPosition = npc.position;
         flickerSpeed = 1f;
-        flickerSpeedModifier = 2.7f;
+        flickerSpeedModifier = 3f;
         timer = 1f;
         time = 1f;
         flickerDone = true;
@@ -84,6 +84,7 @@ public class OpeningSceneEvent : MonoBehaviour
                     GameManager.instance.crosshairHover.gameObject.SetActive(false);
                     AudioManager.instance.Stop("HeartPoundingSFX");
                     AudioManager.instance.Play("TimeUnfreezeSFX");
+                    AudioManager.instance.Play("GreetingsSFX");
                     lights.SetActive(true);
                     playerLightTransform.gameObject.SetActive(false);
                     playerEffectLightTransform.gameObject.SetActive(false);
@@ -173,6 +174,7 @@ public class OpeningSceneEvent : MonoBehaviour
             hugOption.transform.GetChild(0).gameObject.SetActive(false);
             AudioManager.instance.Stop("HeartPoundingSFX");
             AudioManager.instance.Play("TimeUnfreezeSFX");
+            AudioManager.instance.Play("GreetingsSFX");
         }
         else
         {
