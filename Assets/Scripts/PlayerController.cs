@@ -53,11 +53,18 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GameManager.instance.raycastRange, GameManager.instance.interactableMask))
             {
                 interactable = hit.collider.GetComponent<Interactable>();
-                if (Input.GetKeyDown(KeyCode.E) && interactable != null)
+                if(interactable != null)
                 {
-                    motor.MoveToTarget(interactable);
+                    GameManager.instance.crosshairHover.gameObject.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        motor.MoveToTarget(interactable);
+                    }
                 }
+                
             }
+            else
+                GameManager.instance.crosshairHover.gameObject.SetActive(false);
         }
         else
         {
