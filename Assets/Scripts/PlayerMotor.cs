@@ -30,7 +30,7 @@ public class PlayerMotor : MonoBehaviour
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
         agent.SetDestination(point);
-        StartCoroutine(MoveToPointTracker());
+        StartCoroutine(MoveToPointTracker(point));
         arrived = false;
     }
     public void MoveToTarget(Interactable target)
@@ -39,27 +39,27 @@ public class PlayerMotor : MonoBehaviour
         agent.enabled = true;
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
-        // agent.stoppingDistance = target.radius;
+        //agent.stoppingDistance = target.radius;
         agent.SetDestination(target.interactionTransform.position);
         StartCoroutine(MoveToTargetTracker(target));
         arrived = false;
     }
-    public IEnumerator FaceTarget(Transform target)
+    public IEnumerator FaceTarget(Vector3 target)
     {
         Quaternion initialRotation = transform.rotation;
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (target - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         for (float t = 0f; t < 1f; t += 4f * Time.deltaTime)
         {
             transform.rotation = Quaternion.Slerp(initialRotation, lookRotation, t);
             yield return null;
         }
-        direction = (target.position - transform.position).normalized;
+        direction = (target - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         agent.updateRotation = true;
     }
 
-    public IEnumerator MoveToPointTracker()
+    public IEnumerator MoveToPointTracker(Vector3 point)
     {
         while (true)
         {
@@ -69,6 +69,7 @@ public class PlayerMotor : MonoBehaviour
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
+                        //yield return FaceTarget(point);
                         break;
                     }
                 }
@@ -92,7 +93,7 @@ public class PlayerMotor : MonoBehaviour
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
-                        yield return FaceTarget(interactable.interactionTransform);
+                        yield return FaceTarget(interactable.interactionTransform.position);
                         break;
                     }
                 }

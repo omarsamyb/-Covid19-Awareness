@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HandshakeInteraction : Interactable
@@ -13,5 +12,20 @@ public class HandshakeInteraction : Interactable
         base.Interact();
         playerAnimator = player.GetComponent<Animator>();
         npcAnimator = npc.GetComponent<Animator>();
+        playerAnimator.SetTrigger("isShakingHands");
+        npcAnimator.SetTrigger("isShakingHands");
+        StartCoroutine(WaitForAnimation());
+    }
+    IEnumerator WaitForAnimation()
+    {
+        while (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ShakingHands") || !npcAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ShakingHands"))
+        {
+            yield return null;
+        }
+        while (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ShakingHands") || npcAnimator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.ShakingHands"))
+        {
+            yield return null;
+        }
+        finished = true;
     }
 }
