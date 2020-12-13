@@ -187,6 +187,7 @@ public class OpeningSceneEvent : MonoBehaviour
         hugOption.gameObject.SetActive(false);
         GameManager.instance.controlsEnabled = true;
         OutcomeManager.instance.Disable_OpeningSceneInteraction();
+        gameObject.SetActive(false);
     }
 
     IEnumerator WaitForInteraction(Interactable interaction)

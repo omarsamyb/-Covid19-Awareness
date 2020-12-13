@@ -19,11 +19,12 @@ public class Printing : Interactable
     }
     private IEnumerator Wait(float waitTime)
     {
-            GameManager.instance.PrintingEvent = true;
-            AudioManager.instance.Play("PrintingSFX");
-            yield return new WaitForSeconds(waitTime);
-            print("WaitAndPrint " + Time.time);
-            playerAnimator.SetBool("isPrinting", false);
-            GameManager.instance.controlsEnabled = true;
+        GameManager.instance.PrintingEvent = true;
+        AudioManager.instance.Play("PrintingSFX");
+        yield return new WaitForSeconds(waitTime);
+        print("WaitAndPrint " + Time.time);
+        playerAnimator.SetBool("isPrinting", false);
+        GameManager.instance.controlsEnabled = true;
+        OutcomeManager.instance.Disable_PrinterInteraction();
     }
 }

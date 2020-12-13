@@ -54,5 +54,6 @@ public class chairInteraction : Interactable
         playerAnimator.SetBool("isTyping", false);
         playerAnimator.SetBool("isSittingPc", false);
         GameManager.instance.controlsEnabled = true;
+        OutcomeManager.instance.Disable_DeskInteraction();
     }
 }
