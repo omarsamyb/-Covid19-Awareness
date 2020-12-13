@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4753002721034187223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7265183950665551018}
+  - component: {fileID: 1061686054626160222}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7265183950665551018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4753002721034187223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1061686054626160222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4753002721034187223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd41355a704897c47be3eb14e95a6cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: TimeFreezeSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: bd3defa6e64d5a1489d3d940ac092fa0, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: TimeUnfreezeSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 72c7104431a1df048851f74f7437d2ce, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: HeartPoundingSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2a86b09f941f3b24e94073fba5040029, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: ChoiceSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c526fc79f24df414ca29fbc8c8a72761, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: HoverSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2c5a1345829c56b43af8e7264497a43c, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: GreetingsSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: cd0424350690acf42a47ee044260d4ab, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  isMuted: 0

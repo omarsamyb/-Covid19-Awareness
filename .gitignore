@@ -47,7 +47,7 @@ ehthumbs.db
 /Build/*
 /Builds/*
 /Builder/config.json
-
+.vscode
 # Other
 /Raw Assets/
 MaxScore.txt
