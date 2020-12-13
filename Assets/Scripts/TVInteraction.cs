@@ -11,12 +11,16 @@ public class TVInteraction : Interactable
     public Transform crosshair;
     public GameObject videoFX;
     private VideoPlayer vp;
+    public Transform numberOfNpc;
+    private int n;
+
     public override void Interact()
     {
         base.Interact();
         GameManager.instance.controlsEnabled = false;
         playerAnimator = player.GetComponent<Animator>();
         vp = videoFX.GetComponent<VideoPlayer>();
+        n = Mathf.FloorToInt(numberOfNpc.localPosition.x);
         StartCoroutine(Rotate());
     }
 
@@ -63,5 +67,9 @@ public class TVInteraction : Interactable
         crosshair.gameObject.SetActive(true);
         finished = true;
         OutcomeManager.instance.Disable_TvInteraction();
+        if (n == 2)
+            GameManager.instance.EntertainmentEvent = 0;
+        else
+            GameManager.instance.EntertainmentEvent = 1;
     }
 }
