@@ -10,6 +10,7 @@ public class PlayerMotor : MonoBehaviour
     public NavMeshAgent agent;
     private Animator animator;
     public bool arrived;
+    private CharacterController characterController;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class PlayerMotor : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        characterController = GetComponent<CharacterController>();
         arrived = false;
     }
 
@@ -29,6 +31,7 @@ public class PlayerMotor : MonoBehaviour
         agent.enabled = true;
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
+        characterController.enabled = false;
         agent.SetDestination(point);
         StartCoroutine(MoveToPointTracker());
         arrived = false;
@@ -39,6 +42,7 @@ public class PlayerMotor : MonoBehaviour
         agent.enabled = true;
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
+        characterController.enabled = false;
         agent.SetDestination(target.interactionTransform.position);
         StartCoroutine(MoveToTargetTracker(target));
         arrived = false;
@@ -49,6 +53,7 @@ public class PlayerMotor : MonoBehaviour
         agent.enabled = true;
         animator.SetBool("isRunning", false);
         animator.SetBool("isWalking", true);
+        characterController.enabled = false;
         agent.stoppingDistance = target.radius;
         agent.SetDestination(target.interactionTransform.position);
         StartCoroutine(MoveToTargetTracker(target));
@@ -94,9 +99,11 @@ public class PlayerMotor : MonoBehaviour
             yield return null;
         }
         GameManager.instance.controlsEnabled = true;
+        agent.stoppingDistance = 0f;
         agent.ResetPath();
         agent.enabled = false;
         animator.SetBool("isWalking", false);
+        characterController.enabled = true;
         arrived = true;
     }
 
@@ -119,8 +126,10 @@ public class PlayerMotor : MonoBehaviour
         }
         GameManager.instance.controlsEnabled = true;
         agent.ResetPath();
+        agent.stoppingDistance = 0f;
         agent.enabled = false;
         animator.SetBool("isWalking", false);
+        characterController.enabled = true;
         interactable.OnFocused(transform);
         arrived = true;
     }
