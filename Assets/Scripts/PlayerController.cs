@@ -117,6 +117,9 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
             }
+            Vector3 pos = transform.position;
+            pos.y = 0f;
+            transform.position = pos;
         }
     }
 }
