@@ -60,10 +60,11 @@ public class PlayerController : MonoBehaviour
                     {
                         AudioManager.instance.Play("HoverSFX");
                         prev = interactable;
+                        GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     }
-                    GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+                        GameManager.instance.crosshairHover.gameObject.SetActive(false);
                         if (interactable.CompareTag("DoubleSidedInteractable"))
                             motor.MoveToDoubleSidedTarget(interactable);
                         else
