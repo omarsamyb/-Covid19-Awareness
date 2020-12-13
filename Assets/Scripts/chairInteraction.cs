@@ -29,22 +29,29 @@ public class chairInteraction : Interactable
         playerAnimator.SetBool("isSittingPc", true);
         yield return new WaitForSeconds(2.0f);
         float savedLocation = player.position.z;
-        for (; player.position.z < 13.7f;)
+        for (; player.position.z < 13.2f;)
         {
             player.position = new Vector3(player.position.x, player.position.y, player.position.z + 0.005f);
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.005f);
             yield return null;
         }
+        player.position = new Vector3(player.position.x, 0.18f, player.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+0.1f);
+
+        playerAnimator.SetBool("isTyping", true);
         yield return new WaitForSeconds(waitTime);
+        player.position = new Vector3(player.position.x, 0, player.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+
+        playerAnimator.SetBool("isTyping", false);
         for (; player.position.z > savedLocation;)
         {
             player.position = new Vector3(player.position.x, player.position.y, player.position.z - 0.005f);
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.005f);
             yield return null;
         }
+        playerAnimator.SetBool("isTyping", false);
         playerAnimator.SetBool("isSittingPc", false);
-
-
         GameManager.instance.controlsEnabled = true;
     }
 }
