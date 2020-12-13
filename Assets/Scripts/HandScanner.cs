@@ -19,7 +19,7 @@ public class HandScanner : Interactable
     }
     private IEnumerator Wait(float waitTime)
     {
-
+            GameManager.instance.CheckOutEvent = true;
             yield return new WaitForSeconds(waitTime);
             print("WaitAndPrint " + Time.time);
             playerAnimator.SetBool("isScanning", false);

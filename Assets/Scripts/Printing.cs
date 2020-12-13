@@ -19,7 +19,7 @@ public class Printing : Interactable
     }
     private IEnumerator Wait(float waitTime)
     {
-
+            GameManager.instance.PrintingEvent = true;
             yield return new WaitForSeconds(waitTime);
             print("WaitAndPrint " + Time.time);
             playerAnimator.SetBool("isPrinting", false);

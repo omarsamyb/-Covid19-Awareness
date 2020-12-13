@@ -12,9 +12,19 @@ public class ExitScene : Interactable
     {
         base.Interact();
         GameManager.instance.controlsEnabled = false;
-        SceneManager.LoadScene(reportScene);
+        if(GameManager.instance.CheckOutEvent){
+            SceneManager.LoadScene(reportScene);
+        }else{
+            StartCoroutine(WaitForAnimation());
+        }
 
 
     }
+    IEnumerator WaitForAnimation(){
+        GameManager.instance.controlsEnabled = true;
+        yield return null;
+
+    }
+
 }
 

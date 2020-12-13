@@ -107,9 +107,8 @@ public class OpeningSceneEvent : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !GameManager.instance.OpeningSceneEvent)
+        if (other.gameObject.CompareTag("Player") && GameManager.instance.OpeningSceneEvent == -1)
         {
-            GameManager.instance.OpeningSceneEvent = true;
             GameManager.instance.controlsEnabled = false;
             playerMotor.MoveToPoint(playerInteractionPoint.position);
             npcMotor.MoveToPoint(npcInteractionPoint.position);

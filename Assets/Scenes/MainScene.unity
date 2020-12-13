@@ -28293,6 +28293,12 @@ MonoBehaviour:
   isPlayerInsideOffice: 0
   controlsEnabled: 0
   OpeningSceneEvent: 0
+  SanitizingEvent: 0
+  EntertainmentEvent: 0
+  SocialDistanceCounter: 0
+  PrintingEvent: 0
+  CheckOutEvent: 0
+  LaptopTask: 0
   raycastRange: 0
   interactableMask: 0
   multiChoiceOutcome0: 0
