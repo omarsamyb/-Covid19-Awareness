@@ -14,6 +14,7 @@ public class HandshakeInteraction : Interactable
         npcAnimator = npc.GetComponent<Animator>();
         playerAnimator.SetTrigger("isShakingHands");
         npcAnimator.SetTrigger("isShakingHands");
+        GameManager.instance.OpeningSceneEvent = 2;
         StartCoroutine(WaitForAnimation());
     }
     IEnumerator WaitForAnimation()

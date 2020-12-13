@@ -26,6 +26,7 @@ public class HugInteraction : Interactable
         }
         playerAnimator.SetTrigger("isHugging");
         npcAnimator.SetTrigger("isHugging");
+        GameManager.instance.OpeningSceneEvent = 1;
         StartCoroutine(WaitForAnimation());
         GameManager.instance.controlsEnabled = false;
     }

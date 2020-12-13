@@ -39,6 +39,7 @@ public class chairInteraction : Interactable
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+0.1f);
 
         playerAnimator.SetBool("isTyping", true);
+        GameManager.instance.LaptopTask = true;
         yield return new WaitForSeconds(waitTime);
         player.position = new Vector3(player.position.x, 0, player.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
