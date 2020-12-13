@@ -609,7 +609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &301126620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,10 +753,10 @@ RectTransform:
   m_Father: {fileID: 1992762618}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4.3, y: 10.4}
-  m_SizeDelta: {x: 696.26965, y: 402.14575}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -9.700012, y: 62.1}
+  m_SizeDelta: {x: -199.0188, y: 296.23645}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492659477
 MonoBehaviour:
@@ -806,15 +806,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Credits:
-
-
-    https://www.3esh-online.com/download/A_vXA058EDY.html
-
-    https://www.youtube.com/watch?v=NpVj63z9d04
-
-
-'
+  m_Text: "Credits:\n\nOffice Prototype Snaps\n\nCharacter Models and Animations:\n-
+    Mixamo.com\n\n- Sanitizer: (Vuong)\n www.archibase.net! ... Archive3d.net\n\n-
+    CheckOut Terminal: (Paul Brown)\nhttps://archive3d.net/?a=download&id=193775fa\n\n\n"
 --- !u!222 &492659479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1863,8 +1857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161, y: -296}
-  m_SizeDelta: {x: 94.71559, y: 56.602104}
+  m_AnchoredPosition: {x: -215.38574, y: -296}
+  m_SizeDelta: {x: 160.71558, y: 56.602104}
   m_Pivot: {x: -0.32402712, y: -0.560178}
 --- !u!114 &1827053653
 MonoBehaviour:
@@ -2165,7 +2159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1992762614
 MonoBehaviour:
   m_ObjectHideFlags: 0
