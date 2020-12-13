@@ -18,10 +18,10 @@ public class SanitizerInteraction : Interactable
     }
     private IEnumerator Wait(float waitTime)
     {
-       
-            yield return new WaitForSeconds(waitTime);
-            print("WaitAndPrint " + Time.time);
-            playerAnimator.SetBool("isSanitizing", false);
-            GameManager.instance.controlsEnabled = true;
+        yield return new WaitForSeconds(waitTime);
+        print("WaitAndPrint " + Time.time);
+        playerAnimator.SetBool("isSanitizing", false);
+        GameManager.instance.controlsEnabled = true;
+        OutcomeManager.instance.Disable_SanitizeInteraction();
     }
 }
