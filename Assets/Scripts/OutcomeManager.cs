@@ -43,6 +43,9 @@ public class OutcomeManager : MonoBehaviour
     }
     public void Disable_SanitizeInteraction()
     {
+        if(GameManager.instance.SanitizingEvent == -1){
+            GameManager.instance.SanitizingEvent = 0;
+        }
         sanitizeInteraction.layer = defaultLayer;
     }
     public void Disable_DoorInteraction()

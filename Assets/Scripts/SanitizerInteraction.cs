@@ -12,7 +12,7 @@ public class SanitizerInteraction : Interactable
        // Vector3 newPosition = new Vector3(playerPositionX, 1.0F, playerPositionZ);
        // player.transform.position = newPosition;
        // player.transform.rotation
-
+        GameManager.instance.SanitizingEvent = 1;
         playerAnimator.SetBool("isSanitizing", true);
         StartCoroutine(Wait(4.0f));
     }

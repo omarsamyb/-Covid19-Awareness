@@ -68,7 +68,7 @@ public class FinalReport : MonoBehaviour
             socialDistance.text = "- Interaction Name: Social Distancing With Others --- Safety Measurement Result: Success";
         }
         else{
-            socialDistance.text = "- Interaction Name: Social Distancing With Others --- Safety Measurement Result: Failure";
+            socialDistance.text = "- Interaction Name: Social Distancing With Others --- Safety Measurement Result: Failure, Had A Close Contact With People For "+GameManager.instance.SocialDistanceCounter+" Times";
         }
     }
     void checkPrinting(){   
