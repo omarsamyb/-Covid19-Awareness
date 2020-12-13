@@ -13,6 +13,8 @@ public class OutcomeManager : MonoBehaviour
     public GameObject doorInteraction;
     // Sanitize Hands Interaction
     public GameObject sanitizeInteraction;
+    // Desk Interaction
+    public GameObject deskInteraction;
     // TV Interaction
     public GameObject tvInteraction1;
     public GameObject tvInteraction2;
@@ -20,6 +22,8 @@ public class OutcomeManager : MonoBehaviour
     public GameObject printerInteraction;
     // Attendance Interaction
     public GameObject attendanceInteraction;
+    // Exit Interaction
+    public GameObject exitInteraction;
 
     private void Awake()
     {
@@ -44,15 +48,28 @@ public class OutcomeManager : MonoBehaviour
     public void Disable_DoorInteraction()
     {
         doorInteraction.layer = defaultLayer;
+        Disable_SanitizeInteraction();
+        Enable_DeskInteraction();
     }
     public void Enable_DoorInteraction()
     {
         doorInteraction.layer = interactableLayer;
+        Enable_ExitInteraction();
+    }
+    public void Disable_DeskInteraction()
+    {
+        deskInteraction.layer = defaultLayer;
+        Enable_TvInteraction();
+    }
+    public void Enable_DeskInteraction()
+    {
+        deskInteraction.layer = interactableLayer;
     }
     public void Disable_TvInteraction()
     {
         tvInteraction1.layer = defaultLayer;
         tvInteraction2.layer = defaultLayer;
+        Enable_PrinterInteraction();
     }
     public void Enable_TvInteraction()
     {
@@ -62,6 +79,7 @@ public class OutcomeManager : MonoBehaviour
     public void Disable_PrinterInteraction()
     {
         printerInteraction.layer = defaultLayer;
+        Enable_AttendanceInteraction();
     }
     public void Enable_PrinterInteraction()
     {
@@ -70,9 +88,14 @@ public class OutcomeManager : MonoBehaviour
     public void Disable_AttendanceInteraction()
     {
         attendanceInteraction.layer = defaultLayer;
+        Enable_DoorInteraction();
     }
     public void Enable_AttendanceInteraction()
     {
         attendanceInteraction.layer = interactableLayer;
+    }
+    public void Enable_ExitInteraction()
+    {
+        exitInteraction.layer = interactableLayer;
     }
 }

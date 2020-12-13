@@ -12642,7 +12642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e88f99a6a9e0f84db56dabcff8d82f4, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e88f99a6a9e0f84db56dabcff8d82f4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13043,7 +13043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1654218302948990, guid: d6864f78596014a4a9d36262c869812b, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1654218302948990, guid: d6864f78596014a4a9d36262c869812b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13101,6 +13101,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 9dd3f5b3049028f4e948921f3bf87f79, type: 2}
+    - target: {fileID: 8633778564049109302, guid: d6864f78596014a4a9d36262c869812b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6864f78596014a4a9d36262c869812b, type: 3}
 --- !u!1001 &425841881
@@ -14712,10 +14716,12 @@ MonoBehaviour:
   hugInteraction: {fileID: 414569626}
   doorInteraction: {fileID: 430255160}
   sanitizeInteraction: {fileID: 1360909347}
+  deskInteraction: {fileID: 1431264384}
   tvInteraction1: {fileID: 1014170881}
   tvInteraction2: {fileID: 1043039794}
   printerInteraction: {fileID: 858546446}
   attendanceInteraction: {fileID: 811072325}
+  exitInteraction: {fileID: 103784484}
 --- !u!4 &467572398
 Transform:
   m_ObjectHideFlags: 0
@@ -28263,7 +28269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: acaf4fd4b86d6fc2d8c95c8f67ee3566, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acaf4fd4b86d6fc2d8c95c8f67ee3566, type: 3}
@@ -36128,7 +36134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1052688417}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: ReportPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49453,7 +49459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e88f99a6a9e0f84db56dabcff8d82f4, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e88f99a6a9e0f84db56dabcff8d82f4, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -64860,7 +64866,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926120356}
-  m_LocalRotation: {x: 0.07480177, y: -0.7031391, z: 0.07480177, w: 0.70313925}
+  m_LocalRotation: {x: 0.07480178, y: -0.7031391, z: 0.07480177, w: 0.70313925}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -73182,7 +73188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4127738733130681169, guid: 2c2e6163970cdea4a84e3c9e93a01508, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4127738733130681169, guid: 2c2e6163970cdea4a84e3c9e93a01508, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -73706,7 +73712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6492125758118152248, guid: 2c2e6163970cdea4a84e3c9e93a01508, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6492125758118152248, guid: 2c2e6163970cdea4a84e3c9e93a01508, type: 3}
       propertyPath: m_StaticEditorFlags

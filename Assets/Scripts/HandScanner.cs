@@ -19,11 +19,12 @@ public class HandScanner : Interactable
     }
     private IEnumerator Wait(float waitTime)
     {
-            GameManager.instance.CheckOutEvent = true;
-            AudioManager.instance.Play("CheckoutSFX");
-            yield return new WaitForSeconds(waitTime);
-            print("WaitAndPrint " + Time.time);
-            playerAnimator.SetBool("isScanning", false);
-            GameManager.instance.controlsEnabled = true;
+        GameManager.instance.CheckOutEvent = true;
+        AudioManager.instance.Play("CheckoutSFX");
+        yield return new WaitForSeconds(waitTime);
+        print("WaitAndPrint " + Time.time);
+        playerAnimator.SetBool("isScanning", false);
+        GameManager.instance.controlsEnabled = true;
+        OutcomeManager.instance.Disable_AttendanceInteraction();
     }
 }

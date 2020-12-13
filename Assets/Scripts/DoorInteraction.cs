@@ -100,5 +100,7 @@ public class DoorInteraction : Interactable
         rightDoor.localEulerAngles = rightDoorInitialRotation;
         GameManager.instance.controlsEnabled = true;
         finished = true;
+        if (!GameManager.instance.CheckOutEvent)
+            OutcomeManager.instance.Disable_DoorInteraction();
     }
 }
