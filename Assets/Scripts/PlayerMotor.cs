@@ -99,6 +99,7 @@ public class PlayerMotor : MonoBehaviour
             yield return null;
         }
         GameManager.instance.controlsEnabled = true;
+        agent.stoppingDistance = 0f;
         agent.ResetPath();
         agent.enabled = false;
         animator.SetBool("isWalking", false);
@@ -125,6 +126,7 @@ public class PlayerMotor : MonoBehaviour
         }
         GameManager.instance.controlsEnabled = true;
         agent.ResetPath();
+        agent.stoppingDistance = 0f;
         agent.enabled = false;
         animator.SetBool("isWalking", false);
         characterController.enabled = true;
