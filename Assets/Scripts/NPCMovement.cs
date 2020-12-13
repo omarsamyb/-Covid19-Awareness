@@ -6,45 +6,30 @@ using UnityEngine.AI;
 public class NPCMovement : MonoBehaviour
 {
     public Transform[] target;
- //   private NPCMotor npcMotor;
-    private NavMeshAgent agent;
-    private Animator animator;
-    private bool arrived = false;
-
+    private NPCMotor npcMotor;
 
     int i = 0;
     void Start()
     {
-        //npcMotor = transform.GetComponent<NPCMotor>();
-        // npcMotor.MoveToPoint(target[i].position);
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        GoToNext();
+        npcMotor = transform.GetComponent<NPCMotor>();
     }
     void GoToNext()
     {
-        //npcMotor.MoveToPoint(target[i].position);
-        animator.SetBool("isWalking", true);
-        agent.destination = target[i].position;
-        i = i + 1;
-        UnityEngine.Debug.Log("i" + i);
-       // UnityEngine.Debug.Log(target[i].position);
-        if (i == target.Length)
-        {
-            i = 0;
-        }
-        arrived = false;
+        npcMotor = transform.GetComponent<NPCMotor>();
+        npcMotor.MoveToPoint(target[i].position);
+        i = (i + 1) % target.Length;
     }
     // Update is called once per frame
     void Update()
     {
-        // if (npcMotor.arrived)
-        //   GoToNext();
-
-        if (!arrived && agent.remainingDistance <= 0)
+        if (i == 0)
         {
-            arrived = true;
-            animator.SetBool("isWalking", false);
+            npcMotor.MoveToPoint(target[i].position);
+            i = i + 1 % target.Length;
+        }
+
+        if (npcMotor.arrived)
+        {
             GoToNext();
         }
     }
