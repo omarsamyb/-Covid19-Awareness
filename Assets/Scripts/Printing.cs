@@ -15,11 +15,12 @@ public class Printing : Interactable
        // player.transform.rotation
 
         playerAnimator.SetBool("isPrinting", true);
-        StartCoroutine(Wait(1.0f));
+        StartCoroutine(Wait(21.0f));
     }
     private IEnumerator Wait(float waitTime)
     {
-
+            GameManager.instance.PrintingEvent = true;
+            AudioManager.instance.Play("PrintingSFX");
             yield return new WaitForSeconds(waitTime);
             print("WaitAndPrint " + Time.time);
             playerAnimator.SetBool("isPrinting", false);

@@ -15,11 +15,12 @@ public class HandScanner : Interactable
        // player.transform.rotation
 
         playerAnimator.SetBool("isScanning", true);
-        StartCoroutine(Wait(1.0f));
+        StartCoroutine(Wait(6.5f));
     }
     private IEnumerator Wait(float waitTime)
     {
-
+            GameManager.instance.CheckOutEvent = true;
+            AudioManager.instance.Play("CheckoutSFX");
             yield return new WaitForSeconds(waitTime);
             print("WaitAndPrint " + Time.time);
             playerAnimator.SetBool("isScanning", false);
