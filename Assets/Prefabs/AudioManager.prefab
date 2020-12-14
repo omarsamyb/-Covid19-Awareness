@@ -175,4 +175,14 @@ MonoBehaviour:
     pitchVariance: 0
     loop: 0
     isPlaying: 0
+  - name: MenuMusic
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0ad835fd318eba94c9cbb594610f148d, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
   isMuted: 0
