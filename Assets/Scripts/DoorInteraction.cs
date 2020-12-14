@@ -42,7 +42,7 @@ public class DoorInteraction : Interactable
     IEnumerator OpenDoor()
     {
         if (!GameManager.instance.isPlayerInsideOffice)
-            AudioManager.instance.Play("BackgroundSFX");
+            AudioManager.instance.SetVolume("BackgroundSFX", 1f);
         AudioManager.instance.Play("OpenDoorSFX");
         Vector3 leftDoorStart = leftDoorCurrentRotation;
         Vector3 rightDoorStart = rightDoorCurrentRotation;
@@ -101,7 +101,7 @@ public class DoorInteraction : Interactable
         }
         AudioManager.instance.Play("CloseDoorSFX");
         if (!GameManager.instance.isPlayerInsideOffice)
-            AudioManager.instance.Stop("BackgroundSFX");
+            AudioManager.instance.SetVolume("BackgroundSFX", 0.05f);
         leftDoor.localEulerAngles = leftDoorInitialRotation;
         rightDoor.localEulerAngles = rightDoorInitialRotation;
         GameManager.instance.controlsEnabled = true;

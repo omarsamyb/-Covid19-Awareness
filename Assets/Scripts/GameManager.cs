@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool isPlayerInsideOffice;
     public bool controlsEnabled;
+    public bool sceneInProgress;
     // Interaction Events:
 
     // Opening Scene Event {-1: No Interaction , 0: Wave , 1: Hug , 2: Shake Hands}
@@ -53,5 +54,7 @@ public class GameManager : MonoBehaviour
         raycastRange = 8f;
         interactableMask = 1 << 9;
         multiChoiceOutcome0 = -1;
+        AudioManager.instance.Play("BackgroundSFX");
+        sceneInProgress = false;
     }
 }
