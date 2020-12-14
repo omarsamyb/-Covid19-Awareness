@@ -33,6 +33,7 @@ public class OpeningSceneEvent : MonoBehaviour
     private float timer;
     private float time;
     private bool flickerDone;
+    public GameObject objective;
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +124,7 @@ public class OpeningSceneEvent : MonoBehaviour
             npcLightTransform.gameObject.SetActive(true);
             AudioManager.instance.Play("TimeFreezeSFX");
             AudioManager.instance.Play("HeartPoundingSFX");
+            objective.SetActive(false);
         }
     }
 
@@ -188,6 +190,7 @@ public class OpeningSceneEvent : MonoBehaviour
         GameManager.instance.controlsEnabled = true;
         OutcomeManager.instance.Disable_OpeningSceneInteraction();
         gameObject.SetActive(false);
+        objective.SetActive(true);
     }
 
     IEnumerator WaitForInteraction(Interactable interaction)

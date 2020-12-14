@@ -25,6 +25,9 @@ public class OutcomeManager : MonoBehaviour
     // Exit Interaction
     public GameObject exitInteraction;
 
+    public Transform currentObjective;
+    public Transform currentObjective2;
+
     private void Awake()
     {
         instance = this;
@@ -33,6 +36,7 @@ public class OutcomeManager : MonoBehaviour
     {
         defaultLayer = 8;
         interactableLayer = 9;
+        currentObjective = doorInteraction.transform;
     }
 
     public void Disable_OpeningSceneInteraction()
@@ -53,16 +57,20 @@ public class OutcomeManager : MonoBehaviour
         doorInteraction.layer = defaultLayer;
         Disable_SanitizeInteraction();
         Enable_DeskInteraction();
+        currentObjective = deskInteraction.transform;
     }
     public void Enable_DoorInteraction()
     {
         doorInteraction.layer = interactableLayer;
         Enable_ExitInteraction();
+        currentObjective = exitInteraction.transform;
     }
     public void Disable_DeskInteraction()
     {
         deskInteraction.layer = defaultLayer;
         Enable_TvInteraction();
+        currentObjective = tvInteraction1.transform;
+        currentObjective2 = tvInteraction2.transform;
     }
     public void Enable_DeskInteraction()
     {
@@ -73,6 +81,8 @@ public class OutcomeManager : MonoBehaviour
         tvInteraction1.layer = defaultLayer;
         tvInteraction2.layer = defaultLayer;
         Enable_PrinterInteraction();
+        currentObjective = printerInteraction.transform;
+        currentObjective2 = null;
     }
     public void Enable_TvInteraction()
     {
@@ -83,6 +93,7 @@ public class OutcomeManager : MonoBehaviour
     {
         printerInteraction.layer = defaultLayer;
         Enable_AttendanceInteraction();
+        currentObjective = attendanceInteraction.transform;
     }
     public void Enable_PrinterInteraction()
     {
@@ -92,6 +103,7 @@ public class OutcomeManager : MonoBehaviour
     {
         attendanceInteraction.layer = defaultLayer;
         Enable_DoorInteraction();
+        currentObjective = exitInteraction.transform;
     }
     public void Enable_AttendanceInteraction()
     {
