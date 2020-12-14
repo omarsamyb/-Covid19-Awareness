@@ -129,7 +129,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: edea80d0c66e5594ea7eca008774d087, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 1
+    volume: 0.05
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -160,6 +160,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d8a835ba501c28542a178fde3c9cf3c5, type: 3}
     mixerGroup: {fileID: 0}
     volume: 0.7
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: HeartBeatSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 43b4c3e2d72f02846b89504380a24b00, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

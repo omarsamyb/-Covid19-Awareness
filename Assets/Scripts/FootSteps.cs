@@ -13,7 +13,7 @@ public class FootSteps : MonoBehaviour
     private void Step()
     {
         AudioClip clip = audioSource.clip;
-        if (!AudioManager.instance.isPlaying("HeartPoundingSFX"))
+        if (!GameManager.instance.sceneInProgress)
             audioSource.PlayOneShot(clip);
     }
 }
