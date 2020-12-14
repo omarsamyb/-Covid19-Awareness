@@ -14,6 +14,7 @@ public class SanitizerInteraction : Interactable
        // player.transform.rotation
         GameManager.instance.SanitizingEvent = 1;
         playerAnimator.SetBool("isSanitizing", true);
+        AudioManager.instance.Play("SanitizerSFX");
         StartCoroutine(Wait(4.0f));
     }
     private IEnumerator Wait(float waitTime)

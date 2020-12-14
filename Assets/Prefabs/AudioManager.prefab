@@ -125,4 +125,44 @@ MonoBehaviour:
     pitchVariance: 0
     loop: 0
     isPlaying: 0
+  - name: BackgroundSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: edea80d0c66e5594ea7eca008774d087, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    isPlaying: 0
+  - name: OpenDoorSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: b2bc7fb02aeebff4581beb60eecb0e50, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: CloseDoorSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: ff5fa24951439b444bc80e3e9aed2751, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: SanitizerSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d8a835ba501c28542a178fde3c9cf3c5, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.7
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
   isMuted: 0
