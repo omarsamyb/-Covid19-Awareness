@@ -49,6 +49,13 @@ public class PlayerController : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
             run = Input.GetAxisRaw("Run");
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameManager.instance.isPaused)
+                    GameManager.instance.Resume();
+                else
+                    GameManager.instance.Pause();
+            }
 
             // Interactions
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GameManager.instance.raycastRange, GameManager.instance.interactableMask))

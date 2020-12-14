@@ -175,4 +175,34 @@ MonoBehaviour:
     pitchVariance: 0
     loop: 0
     isPlaying: 0
+  - name: MenuMusic
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0ad835fd318eba94c9cbb594610f148d, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    isPlaying: 0
+  - name: succSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2ebca63cf686cc34081d12b334bb7056, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: failedSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 70c790c740b04e745857ddb02e731c8b, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
   isMuted: 0
