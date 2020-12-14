@@ -117,7 +117,8 @@ public class PlayerMotor : MonoBehaviour
                 {
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
-                        yield return FaceTarget(interactable);
+                        if(!interactable.CompareTag("Chair"))
+                            yield return FaceTarget(interactable);
                         break;
                     }
                 }
