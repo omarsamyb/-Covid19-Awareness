@@ -13,6 +13,7 @@ public class TVInteraction : Interactable
     private VideoPlayer vp;
     public Transform numberOfNpc;
     private int n;
+    private bool started;
 
     public override void Interact()
     {
@@ -21,6 +22,7 @@ public class TVInteraction : Interactable
         playerAnimator = player.GetComponent<Animator>();
         vp = videoFX.GetComponent<VideoPlayer>();
         n = Mathf.FloorToInt(numberOfNpc.localPosition.x);
+        started = false;
         StartCoroutine(Rotate());
     }
 
@@ -45,9 +47,12 @@ public class TVInteraction : Interactable
         tvVC.SetActive(true);
         playerVC.SetActive(false);
         crosshair.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1);
         videoFX.SetActive(true);
-        yield return new WaitForSeconds(1);
+        while (!vp.isPlaying)
+        {
+            yield return null;
+        }
+        started = true;
         StartCoroutine(WaitForVideo());
     }
     IEnumerator WaitForVideo()
