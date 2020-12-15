@@ -13,7 +13,7 @@ public class TVInteraction : Interactable
     private VideoPlayer vp;
     public Transform numberOfNpc;
     private int n;
-    private bool started;
+    public GameObject objectiveUI;
 
     public override void Interact()
     {
@@ -22,7 +22,7 @@ public class TVInteraction : Interactable
         playerAnimator = player.GetComponent<Animator>();
         vp = videoFX.GetComponent<VideoPlayer>();
         n = Mathf.FloorToInt(numberOfNpc.localPosition.x);
-        started = false;
+        objectiveUI.SetActive(false);
         StartCoroutine(Rotate());
     }
 
@@ -52,7 +52,6 @@ public class TVInteraction : Interactable
         {
             yield return null;
         }
-        started = true;
         StartCoroutine(WaitForVideo());
     }
     IEnumerator WaitForVideo()
@@ -76,5 +75,6 @@ public class TVInteraction : Interactable
             GameManager.instance.EntertainmentEvent = 0;
         else
             GameManager.instance.EntertainmentEvent = 1;
+        objectiveUI.SetActive(true);
     }
 }
