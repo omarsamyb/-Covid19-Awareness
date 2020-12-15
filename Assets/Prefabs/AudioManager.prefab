@@ -177,7 +177,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: MenuMusic
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 0ad835fd318eba94c9cbb594610f148d, type: 3}
+    clip: {fileID: 8300000, guid: ded3414bc91039940b3796c0eebe9815, type: 3}
     mixerGroup: {fileID: 0}
     volume: 0.6
     volumeVariance: 0
