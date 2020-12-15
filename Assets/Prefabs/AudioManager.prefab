@@ -99,7 +99,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: cd0424350690acf42a47ee044260d4ab, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 0.8
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: ded3414bc91039940b3796c0eebe9815, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 0.6
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
