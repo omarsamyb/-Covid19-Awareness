@@ -99,10 +99,120 @@ MonoBehaviour:
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: cd0424350690acf42a47ee044260d4ab, type: 3}
     mixerGroup: {fileID: 0}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: CheckoutSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 8996d35df22267b69b57b130b4e16fdc, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: PrintingSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4cfd9b3f6ccf40922a0f861f28ca11c8, type: 3}
+    mixerGroup: {fileID: 0}
     volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
+    isPlaying: 0
+  - name: BackgroundSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: edea80d0c66e5594ea7eca008774d087, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.05
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    isPlaying: 0
+  - name: OpenDoorSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: b2bc7fb02aeebff4581beb60eecb0e50, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: CloseDoorSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: ff5fa24951439b444bc80e3e9aed2751, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: SanitizerSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: d8a835ba501c28542a178fde3c9cf3c5, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.7
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: HeartBeatSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 43b4c3e2d72f02846b89504380a24b00, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: MenuMusic
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: ded3414bc91039940b3796c0eebe9815, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 0.4
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    isPlaying: 0
+  - name: succSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2ebca63cf686cc34081d12b334bb7056, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: failedSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 70c790c740b04e745857ddb02e731c8b, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    isPlaying: 0
+  - name: typingSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c5ded8a06a2626049879bb07a0d20657, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
     isPlaying: 0
   isMuted: 0

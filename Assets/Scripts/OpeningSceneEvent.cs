@@ -30,9 +30,12 @@ public class OpeningSceneEvent : MonoBehaviour
     public Transform npcLightTransform;
     private float flickerSpeed;
     private float flickerSpeedModifier;
+    private float speedLimit;
     private float timer;
     private float time;
     private bool flickerDone;
+    public GameObject objective;
+    public GameObject objectiveUI;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +48,7 @@ public class OpeningSceneEvent : MonoBehaviour
         npcInitialPosition = npc.position;
         flickerSpeed = 1f;
         flickerSpeedModifier = 3f;
+        speedLimit = 10f;
         timer = 1f;
         time = 1f;
         flickerDone = true;
@@ -82,7 +86,7 @@ public class OpeningSceneEvent : MonoBehaviour
                     selected = hovered;
                     isSelecting = false;
                     GameManager.instance.crosshairHover.gameObject.SetActive(false);
-                    AudioManager.instance.Stop("HeartPoundingSFX");
+                    AudioManager.instance.Stop("HeartBeatSFX");
                     AudioManager.instance.Play("TimeUnfreezeSFX");
                     AudioManager.instance.Play("GreetingsSFX");
                     lights.SetActive(true);
@@ -122,7 +126,10 @@ public class OpeningSceneEvent : MonoBehaviour
             playerLightTransform.gameObject.SetActive(true);
             npcLightTransform.gameObject.SetActive(true);
             AudioManager.instance.Play("TimeFreezeSFX");
-            AudioManager.instance.Play("HeartPoundingSFX");
+            AudioManager.instance.Pause("BackgroundSFX");
+            objective.SetActive(false);
+            GameManager.instance.sceneInProgress = true;
+            objectiveUI.SetActive(false);
         }
     }
 
@@ -137,11 +144,12 @@ public class OpeningSceneEvent : MonoBehaviour
                 handshakeOption.transform.GetChild(0).gameObject.SetActive(false);
                 waveOption.transform.GetChild(0).gameObject.SetActive(false);
                 hugOption.transform.GetChild(0).gameObject.SetActive(false);
+                GameManager.instance.sceneInProgress = false;
             }
             else if(isSelecting && flickerDone)
             {
                 timer -= flickerSpeed * Time.deltaTime;
-                if (flickerSpeed < 7f)
+                if (flickerSpeed < speedLimit)
                     flickerSpeed += flickerSpeedModifier * Time.deltaTime;
                 if(timer < 0f)
                 {
@@ -162,6 +170,8 @@ public class OpeningSceneEvent : MonoBehaviour
         playerLightTransform.gameObject.SetActive(false);
         playerEffectLightTransform.gameObject.SetActive(false);
         npcLightTransform.gameObject.SetActive(false);
+        GameManager.instance.sceneInProgress = false;
+        objectiveUI.SetActive(true);
         if (isSelecting)
         {
             Time.timeScale = 1f;
@@ -171,7 +181,7 @@ public class OpeningSceneEvent : MonoBehaviour
             handshakeOption.transform.GetChild(0).gameObject.SetActive(false);
             waveOption.transform.GetChild(0).gameObject.SetActive(false);
             hugOption.transform.GetChild(0).gameObject.SetActive(false);
-            AudioManager.instance.Stop("HeartPoundingSFX");
+            AudioManager.instance.Stop("HeartBeatSFX");
             AudioManager.instance.Play("TimeUnfreezeSFX");
             AudioManager.instance.Play("GreetingsSFX");
         }
@@ -186,6 +196,10 @@ public class OpeningSceneEvent : MonoBehaviour
         waveOption.gameObject.SetActive(false);
         hugOption.gameObject.SetActive(false);
         GameManager.instance.controlsEnabled = true;
+        OutcomeManager.instance.Disable_OpeningSceneInteraction();
+        gameObject.SetActive(false);
+        objective.SetActive(true);
+        AudioManager.instance.UnPause("BackgroundSFX");
     }
 
     IEnumerator WaitForInteraction(Interactable interaction)
@@ -198,6 +212,7 @@ public class OpeningSceneEvent : MonoBehaviour
 
     IEnumerator Flicker()
     {
+        AudioManager.instance.Play("HeartBeatSFX");
         flickerDone = false;
         playerEffectLightTransform.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.01f);

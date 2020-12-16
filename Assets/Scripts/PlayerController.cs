@@ -49,6 +49,13 @@ public class PlayerController : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
             run = Input.GetAxisRaw("Run");
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameManager.instance.isPaused)
+                    GameManager.instance.Resume();
+                else
+                    GameManager.instance.Pause();
+            }
 
             // Interactions
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GameManager.instance.raycastRange, GameManager.instance.interactableMask))
@@ -60,10 +67,11 @@ public class PlayerController : MonoBehaviour
                     {
                         AudioManager.instance.Play("HoverSFX");
                         prev = interactable;
+                        GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     }
-                    GameManager.instance.crosshairHover.gameObject.SetActive(true);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+                        GameManager.instance.crosshairHover.gameObject.SetActive(false);
                         if (interactable.CompareTag("DoubleSidedInteractable"))
                             motor.MoveToDoubleSidedTarget(interactable);
                         else
@@ -116,6 +124,9 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
             }
+            Vector3 pos = transform.position;
+            pos.y = 0f;
+            transform.position = pos;
         }
     }
 }

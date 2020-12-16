@@ -1,103 +1,150 @@
-﻿using System.Diagnostics;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public class FinalReport : MonoBehaviour
 {
- public GameObject creditsMenu;
- public GameObject reportMenu;
- public string startgame;
- public Text openingScene;
- public Text sanitizingScene;
- public Text entertainmentScene;
- public Text socialDistance;
- public Text printingTask;
- public Text laptopTask;
+    private string startgame;
+    public GameObject outputGameObject;
+    private bool success;
+    public GameObject failed;
+    public GameObject succeeded;
 
-
-
-    void Update()
-    {  
-        checkOpeningScene();
-        checkSanitizing();
-        checkEntertainment();
-        checkPrinting();
-        checkLaptopTask();
-        checkSocialDistance();
+    private void Start()
+    {
+        success = true;
+        startgame = "MainScene";
+        TextMeshProUGUI output = outputGameObject.GetComponent<TextMeshProUGUI>(); 
+        string text = "Covido Report:- \n";
+        text += "Task 1 \n";
+        text += checkLaptopTask();
+        text += "Task 2 \n";
+        text += checkEntertainment();
+        text += "Task 3 \n";
+        text += checkPrinting();
+        text += "Extras \n";
+        text += checkOpeningScene();
+        text += checkSanitizing();
+        text += checkSocialDistance();
+        if (success)
+        {
+            text += "\nWell done! You succeeded in preventing COVIDO from spreading!";
+            succeeded.SetActive(true);
+            AudioManager.instance.Play("succSFX");
+        }
+        else
+        {
+            text += "\nYou failed, you helped spread COVIDO. \n";
+            text += "Many of your colleagues got infected & the company is closing. \n";
+            text += "The CEO is angry & requested a meeting with you!";
+            failed.SetActive(true);
+            AudioManager.instance.Play("failedSFX");
+        }
+        output.text = text;
     }
-    void checkOpeningScene(){
+
+    string checkOpeningScene(){
+        string text = "";
         if(GameManager.instance.OpeningSceneEvent == 0){
-            openingScene.text = "- Interaction Name: Meeting a colleague --- Interaction Type: Wave --- Safety Measurement Result: Success";
+            text += "- Interaction Name: Meeting a colleague \n" +
+                "-- Interaction Type: Wave - Safety Measurement Result: Success\n";
         }
         else if(GameManager.instance.OpeningSceneEvent == 1){
-            openingScene.text = "- Interaction Name: Meeting a colleague --- Interaction Type: Hug --- Safety Measurement Result: Failure";
+            success = false;
+            text += "- Interaction Name: Meeting a colleague \n" +
+                "-- Interaction Type: Hug - Safety Measurement Result: Failure \n";
         }
         else if(GameManager.instance.OpeningSceneEvent == 2){
-            openingScene.text = "- Interaction Name: Meeting a colleague --- Interaction Type: Shake Hands --- Safety Measurement Result: Failure";
+            success = false;
+            text += "- Interaction Name: Meeting a colleague \n" +
+                "-- Interaction Type: Shake Hands - Safety Measurement Result: Failure \n";
         }
         else{
-            openingScene.text = "- Interaction Name: Meeting a colleague --- Interaction Did Not Take Place";
+            success = false;
+            text += "- Interaction Name: Meeting a colleague \n" +
+                "-- Interaction Did Not Take Place \n";
         }
+        return text;
     }
-    void checkSanitizing(){   
+    string checkSanitizing(){
+        string text = "";
         if(GameManager.instance.SanitizingEvent == 0){
-            sanitizingScene.text = "- Interaction Name: Sanitization --- Interaction Type: Did Not Sanitize --- Safety Measurement Result: Failure";
+            success = false;
+            text += "- Interaction Name: Sanitization \n" +
+                "-- Interaction Type: Did Not Sanitize - Safety Measurement Result: Failure \n";
         }
         else if(GameManager.instance.SanitizingEvent == 1){
-            sanitizingScene.text = "- Interaction Name: Sanitization --- Interaction Type: Did Sanitize --- Safety Measurement Result: Success";
+            text += "- Interaction Name: Sanitization \n" +
+                " -- Interaction Type: Did Sanitize - Safety Measurement Result: Success \n";
         }
         else{
-            sanitizingScene.text = "- Interaction Name: Sanitization --- Interaction Did Not Take Place";
+            success = false;
+            text += "- Interaction Name: Sanitization \n" +
+                "-- Interaction Did Not Take Place \n";
         }
+        return text;
     }
-    void checkEntertainment(){   
-        if(GameManager.instance.EntertainmentEvent == 0){
-            entertainmentScene.text = "- Interaction Name: Entertainment --- Interaction Type: Choosing Full Sofa --- Safety Measurement Result: Failure";
+    string checkEntertainment(){
+        string text = "";
+        if (GameManager.instance.EntertainmentEvent == 0){
+            success = false;
+            text += "- Interaction Name: Entertainment \n" +
+                " -- Interaction Type: Choosing Full Sofa - Safety Measurement Result: Failure \n";
         }
         else if(GameManager.instance.EntertainmentEvent == 1){
-            entertainmentScene.text = "- Interaction Name: Entertainment --- Interaction Type: Choosing Empty Sofa --- Safety Measurement Result: Success";
+            text += "- Interaction Name: Entertainment \n" +
+                "-- Interaction Type: Choosing Empty Sofa - Safety Measurement Result: Success \n";
         }
         else{
-            entertainmentScene.text = "- Interaction Name: Entertainment --- Interaction Did Not Take Place";
+            success = false;
+            text += "- Interaction Name: Entertainment \n" +
+                "-- Interaction Did Not Take Place \n";
         }
+        return text;
     }
-    void checkSocialDistance(){
-        if(GameManager.instance.SocialDistanceCounter == 0){
-            socialDistance.text = "- Interaction Name: Social Distancing With Others --- Safety Measurement Result: Success";
+    string checkSocialDistance(){
+        string text = "";
+        if (GameManager.instance.SocialDistanceCounter == 0){
+            text += "- Interaction Name: Social Distancing With Others \n" +
+                "-- Safety Measurement Result: Success \n";
         }
         else{
-            socialDistance.text = "- Interaction Name: Social Distancing With Others --- Safety Measurement Result: Failure";
+            success = false;
+            text += "- Interaction Name: Social Distancing With Others \n" +
+                "-- Safety Measurement Result: Failure, had a Close Contact With People For " +GameManager.instance.SocialDistanceCounter+" Times \n";
         }
+        return text;
     }
-    void checkPrinting(){   
-        if(GameManager.instance.PrintingEvent){
-            printingTask.text = "- Interaction Name: Printing --- Interaction Type: Did Print";
+    string checkPrinting(){
+        string text = "";
+        if (GameManager.instance.PrintingEvent){
+            text += "- Interaction Name: Printing \n" +
+                "-- Interaction Type: Did Print \n";
         }
         else{
-            printingTask.text = "- Interaction Name: Printing --- Interaction Type: Did Not Print";
+            text += "- Interaction Name: Printing \n" +
+                "-- Interaction Type: Did Not Print \n";
         }
-    }   
+        return text;
+    }
 
-    void checkLaptopTask(){
-        if(GameManager.instance.LaptopTask){
-            laptopTask.text = "- Interaction Name: Using Laptop --- Interaction Type: Did Use Laptop";
+    string checkLaptopTask(){
+        string text = "";
+        if (GameManager.instance.LaptopTask){
+            text += "- Interaction Name: Using Laptop \n" +
+                "-- Interaction Type: Did Use Laptop \n";
         }
         else{
-            laptopTask.text = "- Interaction Name: Using Laptop --- Interaction Type: Did Not Use Laptop";
+            text += "- Interaction Name: Using Laptop \n" +
+                "-- Interaction Type: Did Not Use Laptop \n";
         }
+        return text;
     }
     public void StartGame(){
         SceneManager.LoadScene(startgame);
     }
-    public void Credits(){
-        reportMenu.SetActive(false);
-        creditsMenu.SetActive(true);
-        
-    }
     public void QuitGame(){
         Application.Quit();
     }
-
 }

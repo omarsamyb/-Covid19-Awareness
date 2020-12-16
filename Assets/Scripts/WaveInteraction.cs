@@ -14,6 +14,7 @@ public class WaveInteraction : Interactable
         npcAnimator = npc.GetComponent<Animator>();
         playerAnimator.SetTrigger("isWaving");
         npcAnimator.SetTrigger("isWaving");
+        GameManager.instance.OpeningSceneEvent = 0;
         StartCoroutine(WaitForAnimation());
     }
 
