@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class OutcomeManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class OutcomeManager : MonoBehaviour
 
     public Transform currentObjective;
     public Transform currentObjective2;
+    public TextMeshProUGUI objectiveText;
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class OutcomeManager : MonoBehaviour
         defaultLayer = 8;
         interactableLayer = 9;
         currentObjective = doorInteraction.transform;
+        objectiveText.text = "Finish Work in your Office";
     }
 
     public void Disable_OpeningSceneInteraction()
@@ -71,6 +74,7 @@ public class OutcomeManager : MonoBehaviour
         Enable_TvInteraction();
         currentObjective = tvInteraction1.transform;
         currentObjective2 = tvInteraction2.transform;
+        objectiveText.text = "Take a break in the Entertainment area";
     }
     public void Enable_DeskInteraction()
     {
@@ -83,6 +87,7 @@ public class OutcomeManager : MonoBehaviour
         Enable_PrinterInteraction();
         currentObjective = printerInteraction.transform;
         currentObjective2 = null;
+        objectiveText.text = "Print the work Documents";
     }
     public void Enable_TvInteraction()
     {
@@ -94,6 +99,7 @@ public class OutcomeManager : MonoBehaviour
         printerInteraction.layer = defaultLayer;
         Enable_AttendanceInteraction();
         currentObjective = attendanceInteraction.transform;
+        objectiveText.text = "Take your attendance";
     }
     public void Enable_PrinterInteraction()
     {
@@ -104,6 +110,7 @@ public class OutcomeManager : MonoBehaviour
         attendanceInteraction.layer = defaultLayer;
         Enable_DoorInteraction();
         currentObjective = exitInteraction.transform;
+        objectiveText.text = "Leave the Building";
     }
     public void Enable_AttendanceInteraction()
     {

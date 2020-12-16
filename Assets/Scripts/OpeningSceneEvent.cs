@@ -35,6 +35,7 @@ public class OpeningSceneEvent : MonoBehaviour
     private float time;
     private bool flickerDone;
     public GameObject objective;
+    public GameObject objectiveUI;
 
     // Start is called before the first frame update
     void Start()
@@ -128,6 +129,7 @@ public class OpeningSceneEvent : MonoBehaviour
             AudioManager.instance.Pause("BackgroundSFX");
             objective.SetActive(false);
             GameManager.instance.sceneInProgress = true;
+            objectiveUI.SetActive(false);
         }
     }
 
@@ -169,6 +171,7 @@ public class OpeningSceneEvent : MonoBehaviour
         playerEffectLightTransform.gameObject.SetActive(false);
         npcLightTransform.gameObject.SetActive(false);
         GameManager.instance.sceneInProgress = false;
+        objectiveUI.SetActive(true);
         if (isSelecting)
         {
             Time.timeScale = 1f;

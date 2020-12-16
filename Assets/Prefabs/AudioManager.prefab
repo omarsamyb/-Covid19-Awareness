@@ -99,7 +99,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: cd0424350690acf42a47ee044260d4ab, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 1
+    volume: 0.5
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
     source: {fileID: 0}
     clip: {fileID: 8300000, guid: 8996d35df22267b69b57b130b4e16fdc, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 1
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -177,9 +177,9 @@ MonoBehaviour:
     isPlaying: 0
   - name: MenuMusic
     source: {fileID: 0}
-    clip: {fileID: 8300000, guid: 0ad835fd318eba94c9cbb594610f148d, type: 3}
+    clip: {fileID: 8300000, guid: ded3414bc91039940b3796c0eebe9815, type: 3}
     mixerGroup: {fileID: 0}
-    volume: 0.6
+    volume: 0.4
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -204,5 +204,15 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0
     loop: 0
+    isPlaying: 0
+  - name: typingSFX
+    source: {fileID: 0}
+    clip: {fileID: 8300000, guid: c5ded8a06a2626049879bb07a0d20657, type: 3}
+    mixerGroup: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
     isPlaying: 0
   isMuted: 0
