@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83360f2a089ca074d94ef98857b249fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socialDistanceCollider: {fileID: 0}
+  socialDistanceCollider: {fileID: 32666680}
   x: 1.5
   y: 4
   z: 1.5
@@ -66268,7 +66268,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896019558}
-  m_LocalRotation: {x: 0.087579146, y: -0.70166224, z: 0.087579146, w: 0.70166224}
+  m_LocalRotation: {x: 0.087579146, y: -0.7016622, z: 0.08757913, w: 0.7016623}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
